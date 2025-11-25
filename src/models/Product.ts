@@ -1,3 +1,6 @@
+import { calculateDiscount } from "../utils/discountCalculator.ts";
+import { calculateTax } from "../utils/taxCalculator.ts";
+
 // define interface for the review data
 interface Review {
     rating: number;
@@ -34,8 +37,13 @@ export class Product {
         return `The product '${this.title}' is a ${this.category} product from the brand '${this.brand}'. Its pre-tax price is $${this.price}. It has a rating of ${this.rating}. View some reviews here: ${this.reviews}'`
     }
 
-    // get price with discount method
-    getPriceWithDiscount(): number {
-        return this.price - (this.price * (this.discountPercentage / 100));
+    // get price with discount and tax
+    getFinalSalePrice(): number {
+        // store imported calculation utilities as variables, Product as argument
+        const discountAmount = calculateDiscount(this);
+        const taxAmount = calculateTax(this);
+
+        // return it with 2 decimal places, convert string to number
+        return Number((this.price - discountAmount + taxAmount).toFixed(2));
     }
 }
