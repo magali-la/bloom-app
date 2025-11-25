@@ -29,4 +29,13 @@ export class Product {
         this.images = images;
     }
 
+    // display method
+    displayDetails(): string {
+        return `The product '${this.title}' is a ${this.category} product from the brand '${this.brand}'. Its pre-tax price is $${this.price}. It has a rating of ${this.rating}. View some reviews here: ${this.reviews}'`
+    }
+
+    // get price with discount method
+    getPriceWithDiscount(): number {
+        return this.price - (this.price * (this.discountPercentage / 100));
+    }
 }
