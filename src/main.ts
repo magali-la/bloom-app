@@ -19,7 +19,7 @@ async function displayProductDetails(): Promise<void> {
             console.log(`Current beauty product being processed`, beautyProduct);
 
             // now store the detail and final price in a string
-            let productDetails = `${beautyProduct.displayDetails()} The final price with discount and tax applied is: ${beautyProduct.getFinalSalePrice()}`;
+            let productDetails = `${beautyProduct.displayDetails()} The final price with discount and tax applied is $${beautyProduct.getFinalSalePrice()}`;
 
             // log the details of that product
             console.log(`Important information about this beauty product: `, productDetails);
