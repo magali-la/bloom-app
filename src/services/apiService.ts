@@ -1,5 +1,6 @@
 // import the Product Data interface type, which stores the shape of the data expected
 import type { ProductData } from "../models/Product.ts";
+import { HTTPError, NetworkError } from "../utils/errorHandler.ts";
 
 // FETCH FROM DUMMY JSON API
 
@@ -10,7 +11,7 @@ export const fetchBeautyProducts = async (): Promise<ProductData[]> => {
 
         // use fetch methods to identify HTTP error codes
         if (!response.ok) {
-            throw new Error(`HTTP Error: Failed to fetch beauty products: ${response.status}`);
+            throw new HTTPError(`Failed to fetch beauty products: ${response.status}`);
         }
 
         const data = await response.json();
@@ -21,7 +22,7 @@ export const fetchBeautyProducts = async (): Promise<ProductData[]> => {
 
     } catch(error) {
         // throw a more specific error after being caught in the try block
-        throw new Error(`Failed to fetch beauty products: ${error}`);
+        throw new NetworkError(`Failed to fetch beauty products: ${error}`);
     }
 }
 
