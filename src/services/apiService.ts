@@ -7,6 +7,8 @@ import { HTTPError, NetworkError } from "../utils/errorHandler.ts";
 // Fetch beauty products
 export const fetchBeautyProducts = async (): Promise<ProductData[]> => {
     try {
+        // set a console.log statement at the beginning of this fetch
+        console.log(`Attempting to retrieve beauty products`);
         const response = await fetch('https://dummyjson.com/products/category/beauty');
 
         // use fetch methods to identify HTTP error codes
@@ -15,7 +17,7 @@ export const fetchBeautyProducts = async (): Promise<ProductData[]> => {
         }
 
         const data = await response.json();
-        console.log(data.products);
+        console.log(`Beauty products retrieved successfully: `, data.products);
 
         // return the products key in the raw data, an array of product objects
         return data.products;
@@ -25,5 +27,3 @@ export const fetchBeautyProducts = async (): Promise<ProductData[]> => {
         throw new NetworkError(`Failed to fetch beauty products: ${error}`);
     }
 }
-
-fetchBeautyProducts();
