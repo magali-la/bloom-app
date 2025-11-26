@@ -1,0 +1,37 @@
+import { calculateDiscount } from "../utils/discountCalculator.js";
+import { calculateTax } from "../utils/taxCalculator.js";
+export class Product {
+    id;
+    title;
+    brand;
+    category;
+    price;
+    discountPercentage;
+    rating;
+    reviews;
+    images;
+    constructor(id, title, brand, category, price, discountPercentage, rating, reviews, images) {
+        this.id = id;
+        this.title = title;
+        this.brand = brand;
+        this.category = category;
+        this.price = price,
+            this.discountPercentage = discountPercentage;
+        this.rating = rating;
+        this.reviews = reviews;
+        this.images = images;
+    }
+    // display method
+    displayDetails() {
+        return `The product '${this.title}' is a ${this.category} product from the brand '${this.brand}'. Its pre-tax price is $${this.price}. It has a rating of ${this.rating}. This product has ${this.reviews.length} reviews.`;
+    }
+    // get price with discount and tax
+    getFinalSalePrice() {
+        // store imported calculation utilities as variables, Product as argument
+        const discountAmount = calculateDiscount(this);
+        const taxAmount = calculateTax(this);
+        // return it with 2 decimal places, convert string to number
+        return Number((this.price - discountAmount + taxAmount).toFixed(2));
+    }
+}
+//# sourceMappingURL=Product.js.map
