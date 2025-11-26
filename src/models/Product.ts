@@ -1,6 +1,19 @@
 import { calculateDiscount } from "../utils/discountCalculator.ts";
 import { calculateTax } from "../utils/taxCalculator.ts";
 
+// create an interface for the structure of the product
+export interface ProductData {
+    id: string;
+    title: string;
+    brand: string;
+    category: string;
+    price: number;
+    discountPercentage: number;
+    rating: number;
+    reviews: Review[];
+    images: string[];
+}
+
 // define interface for the review data
 interface Review {
     rating: number;
